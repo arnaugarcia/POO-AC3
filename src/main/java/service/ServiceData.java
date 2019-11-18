@@ -1,45 +1,78 @@
 package service;
 
 import com.google.gson.Gson;
+import domain.Alcohol;
 import domain.Data;
+import domain.Mixer;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Optional;
+import java.util.List;
+import java.util.function.Predicate;
 
-import static java.util.Optional.empty;
-import static java.util.Optional.of;
+import static java.util.Objects.requireNonNull;
+import static java.util.stream.Collectors.toList;
 
 public class ServiceData {
 
     private final static String filePath = "data/C2H5OH.json";
 
-    private final Gson gson;
+    private final Data data;
 
     public ServiceData() {
-        gson = new Gson();
+        data = loadData();
     }
 
-    public Optional<Data> findAll() {
+    public Data findAll() {
+        return data;
+    }
+
+    public Mixer findMixerByName(String name) {
+        return data.getMixers()
+                .stream()
+                .filter(mixer -> mixer.getName().equals(name))
+                .findFirst()
+                .orElseThrow(MixerNotFound::new);
+    }
+
+    public List<Alcohol> findByGraduationBetweenAndCombineWith(double min, double max, Mixer mixer) {
+        return data.getAlcohols()
+                .stream()
+                .filter(combineWith(mixer))
+                .filter(graduationBetween(min, max))
+                .collect(toList());
+
+    }
+
+    private Data loadData() {
+
+        Data data = null;
 
         ClassLoader classLoader = getClass().getClassLoader();
 
-        File file = new File(classLoader.getResource(filePath).getFile());
+        File file = new File(requireNonNull(classLoader.getResource(filePath)).getFile());
 
         try (Reader reader = new FileReader(file)) {
 
-            Data data = gson.fromJson(reader, Data.class);
+            Gson gson = new Gson();
 
-            return of(data);
+            data = gson.fromJson(reader, Data.class);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return empty();
+        return data;
+    }
 
+    private static Predicate<Alcohol> combineWith(Mixer mixer) {
+        return alcohol -> alcohol.getCombinations().contains(mixer.getId());
+    }
+
+    private static Predicate<Alcohol> graduationBetween(double min, double max) {
+        return alcohol -> alcohol.getGraduation() > min && alcohol.getGraduation() < max;
     }
 
 }
