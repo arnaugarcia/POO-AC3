@@ -40,6 +40,13 @@ public class ServiceData {
         return data.getTypes();
     }
 
+    public Type findTypeByName(String name) {
+        return data.getTypes().stream()
+                .filter(type -> type.getName().equals(name))
+                .findFirst()
+                .orElseThrow(TypeNotFound::new);
+    }
+
     public List<Alcohol> findAlcoholByType(Type type) {
         return data.getAlcohols()
                 .stream()
