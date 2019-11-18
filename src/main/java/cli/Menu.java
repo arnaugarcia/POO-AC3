@@ -2,6 +2,8 @@ package cli;
 
 public class Menu {
 
+    public final static int MENU_EXIT = 6;
+
     public static void showMenu() {
         System.out.println(
                 "1. Calcular quantes begudes alcoholiques hi ha de cada tipus.\n" +
