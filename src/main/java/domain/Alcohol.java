@@ -1,6 +1,7 @@
 
 package domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +13,8 @@ public class Alcohol {
     private String procedence;
     private Long year;
     private Long type;
-    private List<Founder> founders = null;
-    private List<Long> combinations = null;
+    private List<Founder> founders = new ArrayList<Founder>();
+    private List<Long> combinations = new ArrayList<Long>();
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     public Alcohol() {

@@ -16,7 +16,9 @@ public class Data {
     public Data() {
     }
 
-    public Data(ArrayList<Alcohol> alcohols, ArrayList<Type> types, ArrayList<Mixer> mixers) {
+    public Data(ArrayList<Alcohol> alcohols,
+                ArrayList<Type> types,
+                ArrayList<Mixer> mixers) {
         super();
         this.alcohols = alcohols;
         this.types = types;
