@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 import domain.Alcohol;
 import domain.Data;
 import domain.Mixer;
+import domain.Type;
 import exceptions.MixerNotFound;
+import exceptions.TypeNotFound;
 
 import java.io.File;
 import java.io.FileReader;
@@ -36,6 +38,21 @@ public class ServiceData {
                 .filter(mixer -> mixer.getName().equals(name))
                 .findFirst()
                 .orElseThrow(MixerNotFound::new);
+    }
+
+    public Type findTypeByName(String name) {
+        return data.getTypes()
+                .stream()
+                .filter(type -> type.getName().equals(name))
+                .findFirst()
+                .orElseThrow(TypeNotFound::new);
+    }
+
+    public List<Alcohol> findByType(Type type) {
+        return data.getAlcohols()
+                .stream()
+                .filter(alcohol -> alcohol.getType().equals(type.getId()))
+                .collect(toList());
     }
 
     public List<Alcohol> findByGraduationBetweenAndCombineWith(double min, double max, Mixer mixer) {
