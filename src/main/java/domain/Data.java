@@ -3,15 +3,14 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Data {
 
-    private ArrayList<Alcohol> alcohols = new ArrayList<Alcohol>();
-    private ArrayList<Type> types = new ArrayList<Type>();
-    private ArrayList<Mixer> mixers = new ArrayList<Mixer>();
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private ArrayList<Alcohol> alcohols = new ArrayList<>();
+    private ArrayList<Type> types = new ArrayList<>();
+    private ArrayList<Mixer> mixers = new ArrayList<>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     public Data() {
     }

@@ -8,7 +8,7 @@ public class Mixer {
 
     private Long id;
     private String name;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     public Mixer() {
     }

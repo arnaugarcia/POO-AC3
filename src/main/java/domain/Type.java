@@ -9,7 +9,7 @@ public class Type {
     private Long id;
     private String name;
     private String description;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     public Type() {
     }

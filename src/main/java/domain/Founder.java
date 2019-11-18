@@ -8,7 +8,7 @@ public class Founder {
 
     private String name;
     private Long born;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     public Founder() {
     }
