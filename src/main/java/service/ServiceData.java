@@ -28,10 +28,6 @@ public class ServiceData {
         data = loadData();
     }
 
-    public Data findAll() {
-        return data;
-    }
-
     public Mixer findMixerByName(String name) {
         return data.getMixers()
                 .stream()
@@ -40,18 +36,14 @@ public class ServiceData {
                 .orElseThrow(MixerNotFound::new);
     }
 
-    public Type findTypeByName(String name) {
-        return data.getTypes()
-                .stream()
-                .filter(type -> type.getName().equals(name))
-                .findFirst()
-                .orElseThrow(TypeNotFound::new);
+    public List<Type> findAllTypes() {
+        return data.getTypes();
     }
 
-    public List<Alcohol> findByType(Type type) {
+    public List<Alcohol> findAlcoholByType(Type type) {
         return data.getAlcohols()
                 .stream()
-                .filter(alcohol -> alcohol.getType().equals(type.getId()))
+                .filter(byType(type))
                 .collect(toList());
     }
 
@@ -91,6 +83,10 @@ public class ServiceData {
 
     private static Predicate<Alcohol> graduationBetween(double min, double max) {
         return alcohol -> alcohol.getGraduation() > min && alcohol.getGraduation() < max;
+    }
+
+    private Predicate<Alcohol> byType(Type type) {
+        return alcohol -> alcohol.getType().equals(type.getId());
     }
 
 }
