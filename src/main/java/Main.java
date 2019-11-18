@@ -5,7 +5,8 @@ import service.ServiceData;
 import java.util.List;
 import java.util.Scanner;
 
-import static cli.Menu.*;
+import static cli.Menu.MENU_EXIT;
+import static cli.Menu.showMenu;
 
 public class Main {
 
@@ -22,17 +23,29 @@ public class Main {
 
             switch (option) {
                 case 1:
+                    option1(service);
                     break;
                 case 2:
-                    Mixer cola = service.findMixerByName("Cola");
-                    List<Alcohol> alcohols = service.findByGraduationBetweenAndCombineWith(25 , 60, cola);
-                    System.out.println(alcohols);
+                    option2(service);
                     break;
                 default:
-                    System.out.println("Option not valid");
+                    System.out.println("Option not valid or not implemented yet");
             }
 
         } while (option != MENU_EXIT);
 
+    }
+
+    private static void option2(ServiceData service) {
+        Mixer cola = service.findMixerByName("Cola");
+        List<Alcohol> alcohols = service.findByGraduationBetweenAndCombineWith(25, 60, cola);
+        System.out.println(alcohols);
+    }
+
+    private static void option1(ServiceData service) {
+        service.findAllTypes().forEach(type -> {
+            List<Alcohol> alcohols = service.findAlcoholByType(type);
+            System.out.println("Type " + type.getName() + " has " + alcohols.size() + " drinks.");
+        });
     }
 }
