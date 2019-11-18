@@ -13,9 +13,9 @@ public class Alcohol {
     private String procedence;
     private Long year;
     private Long type;
-    private List<Founder> founders = new ArrayList<Founder>();
-    private List<Long> combinations = new ArrayList<Long>();
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private List<Founder> founders = new ArrayList<>();
+    private List<Long> combinations = new ArrayList<>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     public Alcohol() {
     }
