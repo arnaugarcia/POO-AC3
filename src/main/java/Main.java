@@ -1,5 +1,6 @@
 import domain.Alcohol;
 import domain.Mixer;
+import domain.Type;
 import service.ServiceData;
 
 import java.util.List;
@@ -27,6 +28,13 @@ public class Main {
                     break;
                 case 2:
                     option2(service);
+                    break;
+                case 3:
+                    Type gin = service.findTypeByName("Gin");
+                    /*service.findAlcoholByType(gin)
+                            .stream()
+                            .collect(groupingBy(q -> q.filterChoice.get(), summingInt(q -> q.queryOutput)));
+                            .forEach(System.out::println);*/
                     break;
                 default:
                     System.out.println("Option not valid or not implemented yet");
