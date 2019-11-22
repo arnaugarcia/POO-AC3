@@ -36,7 +36,7 @@ public class Main {
                     break;
                 case 4:
                     // 4. Mostrar un top 3 de les combinacions (alcohol + mixer) mes repetides.
-                    
+
                     break;
                 default:
                     System.out.println("Option not valid or not implemented yet");
@@ -47,12 +47,7 @@ public class Main {
     }
 
     private static void option3(ServiceData service) {
-        Type gin = service.findTypeByName("Gin");
-        final Alcohol result = service.findAlcoholByType(gin)
-                .stream()
-                .sorted(comparing(Alcohol::getFoundersNameSize))
-                .findFirst()
-                .orElseThrow(AlcoholNotFound::new);
+        final Alcohol result = service.findTopAlcoholByFoundersNameLengthSum("Gin");
         System.out.println(result);
     }
 

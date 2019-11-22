@@ -5,6 +5,7 @@ import domain.Alcohol;
 import domain.Data;
 import domain.Mixer;
 import domain.Type;
+import exceptions.AlcoholNotFound;
 import exceptions.MixerNotFound;
 import exceptions.TypeNotFound;
 
@@ -15,6 +16,7 @@ import java.io.Reader;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static java.util.Comparator.comparing;
 import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toList;
 
@@ -34,6 +36,15 @@ public class ServiceData {
                 .filter(mixer -> mixer.getName().equals(name))
                 .findFirst()
                 .orElseThrow(MixerNotFound::new);
+    }
+
+    public Alcohol findTopAlcoholByFoundersNameLengthSum(String alcoholName) {
+        Type gin = findTypeByName(alcoholName);
+        return findAlcoholByType(gin)
+                .stream()
+                .sorted(comparing(Alcohol::getFoundersNameSize))
+                .findFirst()
+                .orElseThrow(AlcoholNotFound::new);
     }
 
     public List<Type> findAllTypes() {
