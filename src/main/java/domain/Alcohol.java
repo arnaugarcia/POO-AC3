@@ -106,6 +106,13 @@ public class Alcohol {
         return founders;
     }
 
+    public Integer getFoundersNameSize() {
+        return founders
+                .stream()
+                .mapToInt(founder -> founder.getName().length())
+                .sum();
+    }
+
     public void setFounders(List<Founder> founders) {
         this.founders = founders;
     }
