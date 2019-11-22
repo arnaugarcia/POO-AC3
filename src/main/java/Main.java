@@ -1,6 +1,7 @@
 import domain.Alcohol;
 import domain.Mixer;
 import domain.Type;
+import exceptions.AlcoholNotFound;
 import service.ServiceData;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Scanner;
 
 import static cli.Menu.MENU_EXIT;
 import static cli.Menu.showMenu;
+import static java.util.Comparator.comparing;
 
 public class Main {
 
@@ -30,11 +32,11 @@ public class Main {
                     option2(service);
                     break;
                 case 3:
-                    Type gin = service.findTypeByName("Gin");
-                    /*service.findAlcoholByType(gin)
-                            .stream()
-                            .collect(groupingBy(q -> q.filterChoice.get(), summingInt(q -> q.queryOutput)));
-                            .forEach(System.out::println);*/
+                    option3(service);
+                    break;
+                case 4:
+                    // 4. Mostrar un top 3 de les combinacions (alcohol + mixer) mes repetides.
+                    
                     break;
                 default:
                     System.out.println("Option not valid or not implemented yet");
@@ -42,6 +44,16 @@ public class Main {
 
         } while (option != MENU_EXIT);
 
+    }
+
+    private static void option3(ServiceData service) {
+        Type gin = service.findTypeByName("Gin");
+        final Alcohol result = service.findAlcoholByType(gin)
+                .stream()
+                .sorted(comparing(Alcohol::getFoundersNameSize))
+                .findFirst()
+                .orElseThrow(AlcoholNotFound::new);
+        System.out.println(result);
     }
 
     private static void option2(ServiceData service) {
