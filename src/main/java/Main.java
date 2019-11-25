@@ -22,6 +22,7 @@ public class Main {
             Scanner in = new Scanner(System.in);
             option = in.nextInt();
 
+            // TODO: Make service as a singleton
             switch (option) {
                 case 1:
                     option1(service);
@@ -35,11 +36,18 @@ public class Main {
                 case 4:
                     option4(service);
                     break;
+                case 5:
+                    option5(service);
+                    break;
                 default:
                     System.out.println("Option not valid or not implemented yet");
             }
 
         } while (option != MENU_EXIT);
+
+    }
+
+    private static void option5(ServiceData service) {
 
     }
 
