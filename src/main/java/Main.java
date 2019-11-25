@@ -1,7 +1,6 @@
 import domain.Alcohol;
 import domain.Mixer;
-import domain.Type;
-import exceptions.AlcoholNotFound;
+import dto.AlcoholMixerCountDTO;
 import service.ServiceData;
 
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.Scanner;
 
 import static cli.Menu.MENU_EXIT;
 import static cli.Menu.showMenu;
-import static java.util.Comparator.comparing;
 
 public class Main {
 
@@ -36,7 +34,8 @@ public class Main {
                     break;
                 case 4:
                     // 4. Mostrar un top 3 de les combinacions (alcohol + mixer) mes repetides.
-                    List<Alcohol> top3Alcohols = service.findTopAlcoholCombinations(3);
+                    List<AlcoholMixerCountDTO> top3Alcohols = service.findTopAlcoholCombinations(3);
+                    top3Alcohols.forEach(System.out::println);
                     break;
                 default:
                     System.out.println("Option not valid or not implemented yet");
