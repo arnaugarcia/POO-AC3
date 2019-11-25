@@ -36,7 +36,7 @@ public class Main {
                     break;
                 case 4:
                     // 4. Mostrar un top 3 de les combinacions (alcohol + mixer) mes repetides.
-
+                    List<Alcohol> top3Alcohols = service.findTopAlcoholCombinations(3);
                     break;
                 default:
                     System.out.println("Option not valid or not implemented yet");
