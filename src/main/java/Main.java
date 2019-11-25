@@ -33,9 +33,7 @@ public class Main {
                     option3(service);
                     break;
                 case 4:
-                    // 4. Mostrar un top 3 de les combinacions (alcohol + mixer) mes repetides.
-                    List<AlcoholMixerCountDTO> top3Alcohols = service.findTopAlcoholCombinations(3);
-                    top3Alcohols.forEach(System.out::println);
+                    option4(service);
                     break;
                 default:
                     System.out.println("Option not valid or not implemented yet");
@@ -43,6 +41,11 @@ public class Main {
 
         } while (option != MENU_EXIT);
 
+    }
+
+    private static void option4(ServiceData service) {
+        List<AlcoholMixerCountDTO> top3Alcohols = service.findTopAlcoholCombinations(3);
+        top3Alcohols.forEach(System.out::println);
     }
 
     private static void option3(ServiceData service) {
