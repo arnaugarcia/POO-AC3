@@ -1,14 +1,15 @@
 package dto;
 
 import domain.Alcohol;
+import domain.Mixer;
 
 import java.util.Objects;
 
 public class AlcoholMixerDTO {
     private Alcohol alcohol;
-    private Long mixer;
+    private Mixer mixer;
 
-    public AlcoholMixerDTO(Alcohol alcohol, Long mixer) {
+    public AlcoholMixerDTO(Alcohol alcohol, Mixer mixer) {
         this.alcohol = alcohol;
         this.mixer = mixer;
     }
@@ -17,16 +18,8 @@ public class AlcoholMixerDTO {
         return alcohol;
     }
 
-    public void setAlcohol(Alcohol alcohol) {
-        this.alcohol = alcohol;
-    }
-
-    public Long getMixer() {
+    public Mixer getMixer() {
         return mixer;
-    }
-
-    public void setMixer(Long mixer) {
-        this.mixer = mixer;
     }
 
     @Override
@@ -35,19 +28,19 @@ public class AlcoholMixerDTO {
         if (!(o instanceof AlcoholMixerDTO)) return false;
         AlcoholMixerDTO that = (AlcoholMixerDTO) o;
         return Objects.equals(alcohol.getType(), that.alcohol.getType()) &&
-                Objects.equals(mixer, that.mixer);
+                Objects.equals(mixer.getId(), that.mixer.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(alcohol.getType(), mixer);
+        return Objects.hash(alcohol.getType(), mixer.getId());
     }
 
     @Override
     public String toString() {
         return "AlcoholMixerDTO{" +
                 "alcohol=" + alcohol.getNom() +
-                ", mixer=" + mixer +
+                ", mixer=" + mixer.getName() +
                 '}';
     }
 }
