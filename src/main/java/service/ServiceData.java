@@ -5,6 +5,7 @@ import domain.Alcohol;
 import domain.Data;
 import domain.Mixer;
 import domain.Type;
+import dto.AlcoholMixerAverageDTO;
 import dto.AlcoholMixerCountDTO;
 import dto.AlcoholMixerDTO;
 import exceptions.AlcoholNotFound;
@@ -95,6 +96,10 @@ public class ServiceData {
                 .collect(toList());
     }
 
+    public List<AlcoholMixerAverageDTO> findTopMixersByAverageAlcoholGraduation(int topSize) {
+        return null;
+    }
+
     public List<Alcohol> findByGraduationBetweenAndCombineWith(double min, double max, Mixer mixer) {
         return data.getAlcohols()
                 .stream()
@@ -137,5 +142,4 @@ public class ServiceData {
     private Predicate<Alcohol> byType(Type type) {
         return alcohol -> alcohol.getType().equals(type.getId());
     }
-
 }
