@@ -10,7 +10,6 @@ public class Data {
     private ArrayList<Alcohol> alcohols = new ArrayList<>();
     private ArrayList<Type> types = new ArrayList<>();
     private ArrayList<Mixer> mixers = new ArrayList<>();
-    private Map<String, Object> additionalProperties = new HashMap<>();
 
     public Data() {
     }
@@ -63,26 +62,12 @@ public class Data {
         return this;
     }
 
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
-    public Data withAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-        return this;
-    }
-
     @Override
     public String toString() {
         return "Data{" +
                 "alcohols=" + alcohols +
                 ", types=" + types +
                 ", mixers=" + mixers +
-                ", additionalProperties=" + additionalProperties +
                 '}';
     }
 }

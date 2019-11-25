@@ -15,7 +15,6 @@ public class Alcohol {
     private Long type;
     private List<Founder> founders = new ArrayList<>();
     private List<Long> combinations = new ArrayList<>();
-    private Map<String, Object> additionalProperties = new HashMap<>();
 
     public Alcohol() {
     }
@@ -135,19 +134,6 @@ public class Alcohol {
         return this;
     }
 
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
-    public Alcohol withAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-        return this;
-    }
-
     @Override
     public String toString() {
         return "Alcohol{" +
@@ -158,7 +144,6 @@ public class Alcohol {
                 ", type=" + type +
                 ", founders=" + founders +
                 ", combinations=" + combinations +
-                ", additionalProperties=" + additionalProperties +
                 '}';
     }
 }

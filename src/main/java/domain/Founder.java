@@ -8,7 +8,6 @@ public class Founder {
 
     private String name;
     private Long born;
-    private Map<String, Object> additionalProperties = new HashMap<>();
 
     public Founder() {
     }
@@ -45,25 +44,12 @@ public class Founder {
         return this;
     }
 
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
-    public Founder withAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-        return this;
-    }
 
     @Override
     public String toString() {
         return "Founder{" +
                 "name='" + name + '\'' +
                 ", born=" + born +
-                ", additionalProperties=" + additionalProperties +
                 '}';
     }
 }

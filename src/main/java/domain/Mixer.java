@@ -8,7 +8,6 @@ public class Mixer {
 
     private Long id;
     private String name;
-    private Map<String, Object> additionalProperties = new HashMap<>();
 
     public Mixer() {
     }
@@ -45,25 +44,11 @@ public class Mixer {
         return this;
     }
 
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
-    public Mixer withAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-        return this;
-    }
-
     @Override
     public String toString() {
         return "Mixer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", additionalProperties=" + additionalProperties +
                 '}';
     }
 }
