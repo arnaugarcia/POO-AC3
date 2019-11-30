@@ -2,9 +2,9 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import static java.util.stream.Collectors.joining;
 
 public class Alcohol {
 
@@ -136,14 +136,16 @@ public class Alcohol {
 
     @Override
     public String toString() {
-        return "Alcohol{" +
-                "nom='" + nom + '\'' +
-                ", graduation=" + graduation +
-                ", procedence='" + procedence + '\'' +
-                ", year=" + year +
-                ", type=" + type +
-                ", founders=" + founders +
-                ", combinations=" + combinations +
-                '}';
+        String result = "Nom: " + nom + "\n" +
+                "Graduacio: " + graduation + "\n" +
+                "Procedencia: " + procedence + "\n" +
+                "Any: " + year + "\n" +
+                "Tipus: " + type + "\n";
+        if (founders != null) {
+            result += "Founders: " + founders.stream().
+                    map(Founder::getName)
+                    .collect(joining(","));
+        }
+        return result;
     }
 }
