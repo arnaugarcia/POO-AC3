@@ -4,14 +4,14 @@ import java.util.Objects;
 
 public class AlcoholMixerAverageDTO {
 
-    private String alcoholName;
     private String mixerName;
     private Double average;
 
     public AlcoholMixerAverageDTO() {}
 
-    public String getAlcoholName() {
-        return alcoholName;
+    public AlcoholMixerAverageDTO(String mixerName, Double average) {
+        this.mixerName = mixerName;
+        this.average = average;
     }
 
     public String getMixerName() {
@@ -27,13 +27,15 @@ public class AlcoholMixerAverageDTO {
         if (this == o) return true;
         if (!(o instanceof AlcoholMixerAverageDTO)) return false;
         AlcoholMixerAverageDTO that = (AlcoholMixerAverageDTO) o;
-        return Objects.equals(alcoholName, that.alcoholName) &&
-                Objects.equals(mixerName, that.mixerName) &&
+        return Objects.equals(mixerName, that.mixerName) &&
                 Objects.equals(average, that.average);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(alcoholName, mixerName, average);
+    public String toString() {
+        return "AlcoholMixerAverageDTO{" +
+                "mixerName='" + mixerName + '\'' +
+                ", average=" + average +
+                '}';
     }
 }

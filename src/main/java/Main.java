@@ -48,7 +48,7 @@ public class Main {
     }
 
     private static void option5(ServiceData service) {
-        service.findTopMixersByAverageAlcoholGraduation(3);
+        service.findTopMixersByAverageAlcoholGraduation(3).forEach(System.out::println);
     }
 
     private static void option4(ServiceData service) {

@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.DoubleSummaryStatistics;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,7 +98,20 @@ public class ServiceData {
     }
 
     public List<AlcoholMixerAverageDTO> findTopMixersByAverageAlcoholGraduation(int topSize) {
-        return null;
+        return data.getMixers()
+                .stream()
+                .map(mixer -> new AlcoholMixerAverageDTO(mixer.getName(), findAlcoholByContainingMixer(mixer.getId()).getAverage()))
+                .limit(topSize)
+                .sorted(comparing(AlcoholMixerAverageDTO::getAverage).reversed())
+                .collect(toList());
+    }
+
+    private DoubleSummaryStatistics findAlcoholByContainingMixer(Long mixerId) {
+        return data.getAlcohols()
+                .stream()
+                .filter(alcohol -> alcohol.getCombinations().contains(mixerId))
+                .mapToDouble(Alcohol::getGraduation)
+                .summaryStatistics();
     }
 
     public List<Alcohol> findByGraduationBetweenAndCombineWith(double min, double max, Mixer mixer) {
@@ -106,8 +120,6 @@ public class ServiceData {
                 .filter(combineWith(mixer))
                 .filter(graduationBetween(min, max))
                 .collect(toList());
-
-
     }
 
     private Data loadData() {
